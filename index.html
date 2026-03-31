@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Patricia's Elevator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { quicksand: ['Quicksand', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-image: radial-gradient(#fbcfe8 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+
+        #elevator-car::after {
+            content: '( ˘ ▽ ˘ )';
+            position: absolute;
+            font-size: 10px;
+            bottom: 4px;
+            color: #5eead4;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-pink-50 font-quicksand text-slate-600 flex flex-col md:flex-row items-center justify-center min-h-screen gap-12 p-8 m-0">
+    <div class="flex flex-col items-center">
+        <h1 class="text-3xl font-bold text-pink-400 mb-6 drop-shadow-sm text-center">Patricia's<br>Elevator</h1>
+        <div
+            class="relative flex flex-col-reverse bg-white/80 border-4 border-pink-200 rounded-3xl w-72 shadow-xl shadow-pink-200/50 backdrop-blur-sm overflow-hidden">
+            <div class="absolute left-1/2 -translate-x-1/2 w-[90px] h-full bg-slate-50 border-x-2 border-pink-100">
+            </div>
+            <div id="elevator-car"
+                class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[78px] h-[56px] bg-cyan-50 border-[3px] border-cyan-200 rounded-t-2xl rounded-b-lg shadow-lg shadow-cyan-200/60 transition-[bottom] duration-500 ease-in-out flex items-center justify-center font-bold text-2xl text-cyan-600 z-10 pb-2">
+                0</div>
+            <div
+                class="h-[60px] border-b-2 first:border-b-0 border-dashed border-pink-100 flex items-center pl-6 font-semibold text-slate-500 relative z-0">
+                Floor 0</div>
+            <div
+                class="h-[60px] border-b-2 border-dashed border-pink-100 flex items-center pl-6 font-semibold text-slate-500 relative z-0">
+                Floor 1</div>
+            <div
+                class="h-[60px] border-b-2 border-dashed border-pink-100 flex items-center pl-6 font-semibold text-slate-500 relative z-0">
+                Floor 2</div>
+            <div
+                class="h-[60px] border-b-2 border-dashed border-pink-100 flex items-center pl-6 font-semibold text-slate-500 relative z-0">
+                Floor 3</div>
+            <div
+                class="h-[60px] border-b-2 border-dashed border-pink-100 flex items-center pl-6 font-semibold text-slate-500 relative z-0">
+                Floor 4</div>
+            <div
+                class="h-[60px] border-b-2 border-dashed border-pink-100 flex items-center pl-6 font-semibold text-slate-500 relative z-0">
+                Floor 5</div>
+        </div>
+    </div>
+    <div class="bg-white p-8 rounded-[30px] shadow-2xl shadow-pink-200/40 w-[320px] border-2 border-white">
+        <h3 class="mt-0 border-b-2 border-dashed border-pink-100 pb-3 mb-6 text-pink-400 font-bold text-xl text-center">
+            Elevator Stats</h3>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <div
+                class="bg-pink-50/50 p-4 rounded-2xl text-center border border-pink-50 hover:-translate-y-1 transition-transform duration-200">
+                <span class="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wide">Floor</span>
+                <span id="ui-floor" class="text-3xl font-bold text-pink-400">0</span>
+            </div>
+            <div
+                class="bg-pink-50/50 p-4 rounded-2xl text-center border border-pink-50 hover:-translate-y-1 transition-transform duration-200">
+                <span class="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wide">Inside</span>
+                <span id="ui-riders" class="text-3xl font-bold text-pink-400">0</span>
+            </div>
+            <div
+                class="bg-pink-50/50 p-4 rounded-2xl text-center border border-pink-50 hover:-translate-y-1 transition-transform duration-200">
+                <span class="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wide">Stops</span>
+                <span id="ui-stops" class="text-3xl font-bold text-pink-400">0</span>
+            </div>
+            <div
+                class="bg-pink-50/50 p-4 rounded-2xl text-center border border-pink-50 hover:-translate-y-1 transition-transform duration-200">
+                <span class="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wide">Traversed</span>
+                <span id="ui-traversed" class="text-3xl font-bold text-pink-400">0</span>
+            </div>
+        </div>
+        <h3 class="mt-0 border-b-2 border-dashed border-pink-100 pb-3 mb-5 text-pink-400 font-bold text-xl text-center">
+            Request Elevator</h3>
+        <div class="mb-4">
+            <label class="block text-sm font-bold text-slate-500 mb-2 ml-1">Current Floor (0-5)</label>
+            <input type="number" id="start" min="0" max="5" value="0"
+                class="w-full p-3 bg-slate-50 border-2 border-pink-100 rounded-2xl text-slate-600 font-bold focus:outline-none focus:border-pink-300 focus:bg-white transition-colors">
+        </div>
+        <div class="mb-5">
+            <label class="block text-sm font-bold text-slate-500 mb-2 ml-1">Drop-off Floor (0-5)</label>
+            <input type="number" id="end" min="0" max="5" value="5"
+                class="w-full p-3 bg-slate-50 border-2 border-pink-100 rounded-2xl text-slate-600 font-bold focus:outline-none focus:border-pink-300 focus:bg-white transition-colors">
+        </div>
+        <button id="btn-request"
+            class="w-full p-4 bg-pink-300 hover:bg-pink-400 text-white border-none rounded-2xl text-lg font-bold cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-pink-300/50 active:translate-y-0 mt-2">Call
+            Elevator</button>
+    </div>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
