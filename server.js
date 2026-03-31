@@ -16,7 +16,9 @@ app.post("/api/requests", (req, res) => {
   res.status(201).json(newRequest);
 });
 
-app.get("/api/requests", (req, res) => res.json(requests));
+app.get("/api/requests", (req, res) => {
+  res.status(200).json(requests);
+});
 
 app.delete("/api/requests/:id", (req, res) => {
   requests = requests.filter((r) => r.id !== parseInt(req.params.id, 10));
@@ -29,13 +31,15 @@ app.post("/api/riders", (req, res) => {
   res.status(201).json(newRider);
 });
 
-app.get("/api/riders", (res) => res.json(riders));
+app.get("/api/riders", (req, res) => {
+  res.status(200).json(riders);
+});
 
 app.delete("/api/riders/:id", (req, res) => {
   riders = riders.filter((r) => r.id !== parseInt(req.params.id, 10));
   res.status(204).send();
 });
 
-app.listen(3001, "127.0.0.1", () =>
-  console.log("Elevator API running on http://127.0.0.1:3001"),
-);
+app.listen(3001, "127.0.0.1", () => {
+  console.log("Elevator API running on http://127.0.0.1:3001");
+});
